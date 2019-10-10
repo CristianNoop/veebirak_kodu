@@ -12,11 +12,15 @@ $(function() {
         console.log("asfas");
         $("#profile-container").hide();
         $("#courses-container").show();
+        makeActiveInactive($(this), $("#profile-button"))
+        
+
     });
     $("#profile-button").click(function (event) {
         console.log("asfas");
         $("#profile-container").show();
         $("#courses-container").hide();
+        makeActiveInactive($(this), $("#courses-button"))
     });
 
 
@@ -40,6 +44,13 @@ $(function() {
             tr.append(idx, name, semester, grade);
 
             $("#coursesrows").append(tr);
+        }
+    }
+
+    function makeActiveInactive($button1, $button2) {
+        if (!$button1.hasClass("active")) {
+            $button1.addClass("active")
+            $button2.removeClass("active")
         }
     }
 
