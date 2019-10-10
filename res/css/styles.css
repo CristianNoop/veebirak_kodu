@@ -160,6 +160,7 @@ table td{
     border: 1px solid #cccccc;
     padding: 10px 20px;
     min-width: 135px;
+    required: true;
 }
 #add-course{
     display: none;

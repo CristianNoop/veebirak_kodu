@@ -26,10 +26,25 @@ $(function() {
 
 
     $("#add-course-button").click(function (event) {
-        console.log("sd")
         $("#add-course").toggle("hide");
     });
 
+
+    $("#save-course").click(function (event) {
+        console.log("hi");
+        var inputs = $("#add-course").children(".input");
+
+        for (let i = 0; i < inputs.length; i++) {
+            var input = inputs.eq(i);
+            if (input.val() == "") {
+                input.focus()
+                return;
+            }
+        }
+        var course = new Course(inputs.eq(0).val(), inputs.eq(1).val(), inputs.eq(2).val())
+        addCourseToTable(course)
+
+    });
 
     function init() {
         //On seda siin vaja? 2.ülesanne Note osa.
@@ -40,17 +55,8 @@ $(function() {
 
 
         for (let i = 0; i < courses.length; i++){
-            let tr = $("<tr></tr>");
-
-            let count = $("#coursesrows").children().length;
-            let idx = $("<td></td>").text(count+1);
-            let name = $("<td></td>").text(courses[i].title);
-            let semester = $("<td></td>").text(courses[i].semester);
-            let grade = $("<td></td>").text(courses[i].grade);
-
-            tr.append(idx, name, semester, grade);
-
-            $("#coursesrows").append(tr);
+            var course = courses[i];
+            addCourseToTable(course);
         }
     }
 
@@ -61,5 +67,17 @@ $(function() {
         }
     }
 
+    function addCourseToTable($course) {
+        let tr = $("<tr></tr>");
 
+        let count = $("#coursesrows").children().length;
+        let idx = $("<td></td>").text(count+1);
+        let name = $("<td></td>").text($course.title);
+        let semester = $("<td></td>").text($course.semester);
+        let grade = $("<td></td>").text($course.grade);
+
+        tr.append(idx, name, semester, grade);
+
+        $("#coursesrows").append(tr);
+    }
 })
