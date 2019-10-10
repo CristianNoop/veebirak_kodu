@@ -20,8 +20,7 @@ $(function() {
         $("#courses-container").hide();
         makeActiveInactive($(this), $("#courses-button"))
 
-        //hiding the add course button
-        $("#add-course").hide()
+        cleanAndHideAddCourse();
     });
 
 
@@ -31,7 +30,6 @@ $(function() {
 
 
     $("#save-course").click(function (event) {
-        console.log("hi");
         var inputs = $("#add-course").children(".input");
 
         for (let i = 0; i < inputs.length; i++) {
@@ -41,8 +39,12 @@ $(function() {
                 return;
             }
         }
+
+
         var course = new Course(inputs.eq(0).val(), inputs.eq(1).val(), inputs.eq(2).val())
-        addCourseToTable(course)
+        addCourseToTable(course);
+
+        cleanAndHideAddCourse();
 
     });
 
@@ -79,5 +81,12 @@ $(function() {
         tr.append(idx, name, semester, grade);
 
         $("#coursesrows").append(tr);
+    }
+
+
+    function cleanAndHideAddCourse() {
+        $("#add-course").children(".input").val("");
+        $("#add-course").hide();
+        
     }
 })
