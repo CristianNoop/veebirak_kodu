@@ -41,12 +41,19 @@ $(function () {
         }
 
 
+
+
         var course = new Course(inputs.eq(0).val(), inputs.eq(1).val(), inputs.eq(2).val())
         addCourseToTable(course);
 
         cleanAndHideAddCourse();
 
     });
+     $("#cancel-course").click(function (event) {
+        cleanAndHideAddCourse();
+
+    });
+
 
     function init() {
         $("#name").text(user.firstname + " " + user.lastname);
@@ -82,6 +89,7 @@ $(function () {
         tr.append(idx, name, semester, grade);
 
         $("#coursesrows").append(tr);
+        calculateGPA()
     }
 
 
@@ -109,6 +117,6 @@ $(function () {
         })
 
         let GPA = points / $("#coursesrows").children().length
-        $("#gpa .strong").text(GPA);
+        $("#gpa > strong").text(GPA.toFixed(3));
     }
 })
