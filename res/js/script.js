@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     var user = new User("Jonathan", "Doep", "12/08/1953", "Software Engineering", 4.52);
     var c1 = new Course("Algorithmics", 1, 99);
     var c2 = new Course("Parallel Computing", 2, 87);
@@ -12,7 +12,7 @@ $(function() {
         $("#profile-container").hide();
         $("#courses-container").show();
         makeActiveInactive($(this), $("#profile-button"))
-        
+
 
     });
     $("#profile-button").click(function (event) {
@@ -34,7 +34,7 @@ $(function() {
 
         for (let i = 0; i < inputs.length; i++) {
             var input = inputs.eq(i);
-            if (input.val() == "") {
+            if (input.val() === "") {
                 input.focus()
                 return;
             }
@@ -49,17 +49,18 @@ $(function() {
     });
 
     function init() {
-        //On seda siin vaja? 2.ülesanne Note osa.
-        /*$("#name").text(user.firstname + " " + user.lastname);
+        $("#name").text(user.firstname + " " + user.lastname);
         $("#birthdate").text(user.birthday);
         $("#faculty").text(user.faculty);
-        $("#gpa").text(user.gpa);*/
+        $("#gpa strong").text(user.gpa);
 
 
-        for (let i = 0; i < courses.length; i++){
+        for (let i = 0; i < courses.length; i++) {
             var course = courses[i];
             addCourseToTable(course);
         }
+        calculateGPA()
+
     }
 
     function makeActiveInactive($button1, $button2) {
@@ -73,7 +74,7 @@ $(function() {
         let tr = $("<tr></tr>");
 
         let count = $("#coursesrows").children().length;
-        let idx = $("<td></td>").text(count+1);
+        let idx = $("<td></td>").text(count + 1);
         let name = $("<td></td>").text($course.title);
         let semester = $("<td></td>").text($course.semester);
         let grade = $("<td></td>").text($course.grade);
@@ -87,6 +88,27 @@ $(function() {
     function cleanAndHideAddCourse() {
         $("#add-course").children(".input").val("");
         $("#add-course").hide();
-        
+
+    }
+
+    function calculateGPA() {
+        let points = 0
+        $('#coursesrows td:last-child ').each(function () {
+            let grade = parseInt($(this).text())
+            if (grade > 90)
+                points += 4;
+            else if (grade > 80)
+                points += 3;
+            else if (grade > 70)
+                points += 2;
+            else if (grade > 60)
+                points += 1;
+            else if (grade > 50)
+                points += 0.5;
+
+        })
+
+        let GPA = points / $("#coursesrows").children().length
+        $("#gpa strong").text(GPA);
     }
 })
