@@ -109,6 +109,6 @@ $(function () {
         })
 
         let GPA = points / $("#coursesrows").children().length
-        $("#gpa strong").text(GPA);
+        $("#gpa .strong").text(GPA);
     }
 })
