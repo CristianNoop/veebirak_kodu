@@ -1,4 +1,4 @@
-class User{
+export default class User{
     constructor(firstn, lastn, bd, fac, gpa){
         this.firstname = firstn;
         this.lastname = lastn;

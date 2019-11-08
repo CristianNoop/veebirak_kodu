@@ -1,5 +1,29 @@
-# veebirak_kodu
+# homework-3
 
-Marten Tamm B61723
-Karl Taal B87493
-Cristian Noop  B71147
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
