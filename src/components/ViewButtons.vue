@@ -15,7 +15,6 @@
             () => {
             return {
                 view: ProfileView,
-                isInfoView: true,
                 isCourseView: false
             }
         },
