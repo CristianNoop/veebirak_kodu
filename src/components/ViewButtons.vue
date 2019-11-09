@@ -1,7 +1,7 @@
 <template>
     <div class="controls">
-        <button @click="setInfoView" id="profile-button" class="pill active">Profile</button>
-        <button @click="setCourseView" id="courses-button" class="pill">Courses</button>
+        <button @click="setInfoView" id="profile-button" class="pill" v-bind:class="{'active': !isCourseView}">Profile</button>
+        <button @click="setCourseView" id="courses-button" class="pill" v-bind:class="{'active': isCourseView}">Courses</button>
     </div>
 </template>
 
@@ -11,17 +11,22 @@
 
     export default {
         name: "ViewButtons",
-        data: () => {
+        data:
+            () => {
             return {
-                view: ProfileView
+                view: ProfileView,
+                isInfoView: true,
+                isCourseView: false
             }
         },
         methods: {
             setCourseView: function () {
-                this.$emit('changeView', CourseTable)
+                this.$emit('changeView', CourseTable);
+                this.isCourseView = true;
             },
             setInfoView: function () {
-                this.$emit('changeView', ProfileView)
+                this.$emit('changeView', ProfileView);
+                this.isInfoView = true;
             }
         }
     }
