@@ -26,7 +26,7 @@
             },
             setInfoView: function () {
                 this.$emit('changeView', ProfileView);
-                this.isInfoView = true;
+                this.isCourseView = false;
             }
         }
     }
