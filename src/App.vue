@@ -1,8 +1,8 @@
 <template>
     <main id="root">
         <Header/>
-        <Component v-bind:is="view"></Component>
-        <ViewButtons v-on:changeView="updateView($event)"></ViewButtons>
+        <Component v-bind:is="view"/>
+        <ViewButtons v-on:changeView="updateView($event)"/>
         <Footer/>
     </main>
 </template>
