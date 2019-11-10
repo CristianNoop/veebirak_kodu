@@ -1,8 +1,8 @@
 <template>
     <main id="root">
         <Header/>
-        <Component v-if="foo" v-bind:is="this.Profile"/>
-        <Component v-if="!foo" v-bind:courses=this.courseList v-bind:is="this.CourseTable"/>
+        <Component v-if="foo" v-bind:gpa=this.gpa v-bind:courses=this.courseList v-bind:is="this.Profile"/>
+        <Component v-on:gpa="calculateGpa" v-if="!foo" v-bind:courses=this.courseList v-bind:is="this.CourseTable"/>
         <ViewButtons v-on:changeView="updateView($event)"/>
         <Footer/>
     </main>
@@ -18,7 +18,7 @@
 
     export default {
         name: 'app',
-        data: () => {
+        data() {
             return {
                 courseList: [
                     new Course("Agile software development", 1, 82),
@@ -28,7 +28,8 @@
                 ],
                 foo : true,
                 Profile: Profile,
-                CourseTable: CourseTable
+                CourseTable: CourseTable,
+                gpa: 0
             }
         },
         components: {
@@ -41,7 +42,29 @@
         methods: {
             updateView: function (newValue) {
                 this.foo = newValue
+            },
+            calculateGpa() {
+                let gpa = 0;
+                this.courseList.forEach(value => {
+                    /* eslint-disable no-console */
+                    value = value.grade;
+                    if (value > 90)
+                        gpa += 4;
+                    else if (value > 80)
+                        gpa += 3;
+                    else if (value > 70)
+                        gpa += 2;
+                    else if (value > 60)
+                        gpa += 1;
+                    else if (value > 50)
+                        gpa += 0.5;
+                });
+                gpa = Math.round(gpa/this.courseList.length*100)/100;
+                this.gpa = gpa;
             }
+        },
+        created() {
+            this.calculateGpa();
         }
     }
 </script>

@@ -38,7 +38,7 @@
                 this.grade = "";
             },
             addItems: function () {
-                this.$emit("addNewItem", [this.title, this.semester, this.grade])
+                this.$emit("addNewItem", [this.title, this.semester, this.grade]);
                 if (this.addCourse === "none") {
                     this.addCourse = "inline";
                 } else {

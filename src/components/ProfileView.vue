@@ -23,11 +23,12 @@
     import User from "@/models/User";
     export default {
         name: "InfoView",
-        data: () => {
+        props: ["courses", "gpa"],
+        data() {
             return {
-                user: new User("Jonathan", "Dope", "11/10/1999", "Software Engineering", 2.75)
+                user: new User("Jonathan", "Dope", "11/10/1999", "Software Engineering", this.gpa)
             }
-        }
+        },
     }
 </script>
 

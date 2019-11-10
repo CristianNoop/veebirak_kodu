@@ -39,6 +39,7 @@
                 this.title = "";
                 this.grade = "";
                 this.semester = "";
+                this.$emit('gpa');
             },
         },
         data: () => {
