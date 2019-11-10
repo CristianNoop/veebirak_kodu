@@ -7,7 +7,7 @@
             <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade" v-model="grade">
             <button class="green-button" id="save-course"
 					v-on:click="addItems">Save</button>
-            <button class="grey-button" id="cancel-course">Cancel</button>
+            <button class="grey-button" id="cancel-course" @click="toggleDisplay">Cancel</button>
         </span>
 	</div>
 </template>
@@ -33,6 +33,9 @@
                 } else {
                     this.addCourse = "none"
                 }
+                this.title = "";
+                this.semester = "";
+                this.grade = "";
             },
             addItems: function () {
                 this.$emit("addNewItem", [this.title, this.semester, this.grade])
