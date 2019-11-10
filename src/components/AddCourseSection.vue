@@ -36,6 +36,9 @@
             },
             addItems: function () {
                 this.$emit("addNewItem", [this.title, this.semester, this.grade])
+				this.title = "";
+				this.semester = "";
+				this.grade = "";
             },
 
 
