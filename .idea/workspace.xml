@@ -5,8 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AddCourseSection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddCourseSection.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CoursesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CoursesTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ViewButtons.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ViewButtons.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileView.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +48,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\Karl\Documents\Veebirakendused loomine\Github kodutööd\veebirak_kodu\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RunDashboard">
@@ -93,6 +93,7 @@
       <workItem from="1573383311300" duration="5360000" />
       <workItem from="1573388959293" duration="1335000" />
       <workItem from="1573395378656" duration="3054000" />
+      <workItem from="1573416619856" duration="1552000" />
     </task>
     <servers />
   </component>

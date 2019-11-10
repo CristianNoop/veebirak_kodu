@@ -12,7 +12,7 @@
                 </ul>
             </div>
             <div id="gpa">
-                <strong>{{user.gpa}}</strong>
+                <strong>{{gpa}}</strong>
             </div>
             <div class="clear-fix"></div>
         </div>
@@ -23,7 +23,7 @@
     import User from "@/models/User";
     export default {
         name: "InfoView",
-        props: ["courses", "gpa"],
+        props: ["gpa"],
         data() {
             return {
                 user: new User("Jonathan", "Dope", "11/10/1999", "Software Engineering", this.gpa)

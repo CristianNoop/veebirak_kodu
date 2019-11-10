@@ -1,8 +1,8 @@
 <template>
     <main id="root">
         <Header/>
-        <Component v-if="foo" v-bind:gpa=this.gpa v-bind:courses=this.courseList v-bind:is="this.Profile"/>
-        <Component v-on:gpa="calculateGpa" v-if="!foo" v-bind:courses=this.courseList v-bind:is="this.CourseTable"/>
+        <Component v-if="foo" v-bind:gpa=calculateGpa  v-bind:is="this.Profile"/>
+        <Component  v-if="!foo" v-bind:courses=this.courseList v-bind:is="this.CourseTable"/>
         <ViewButtons v-on:changeView="updateView($event)"/>
         <Footer/>
     </main>
@@ -29,7 +29,6 @@
                 foo : true,
                 Profile: Profile,
                 CourseTable: CourseTable,
-                gpa: 0
             }
         },
         components: {
@@ -43,7 +42,10 @@
             updateView: function (newValue) {
                 this.foo = newValue
             },
-            calculateGpa() {
+
+        },
+        computed: {
+            calculateGpa: function()  {
                 let gpa = 0;
                 this.courseList.forEach(value => {
                     /* eslint-disable no-console */
@@ -60,11 +62,8 @@
                         gpa += 0.5;
                 });
                 gpa = Math.round(gpa/this.courseList.length*100)/100;
-                this.gpa = gpa;
+                return gpa;
             }
-        },
-        created() {
-            this.calculateGpa();
         }
     }
 </script>

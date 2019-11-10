@@ -22,7 +22,6 @@
                 title: "",
                 semester: "",
                 grade: "",
-
             }
 
         },
