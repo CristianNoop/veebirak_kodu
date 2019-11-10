@@ -6,25 +6,21 @@
 </template>
 
 <script>
-    import CourseTable from './CoursesTable.vue'
-    import ProfileView from './ProfileView.vue'
-
     export default {
         name: "ViewButtons",
         data:
             () => {
             return {
-                view: ProfileView,
                 isCourseView: false
             }
         },
         methods: {
             setCourseView: function () {
-                this.$emit('changeView', CourseTable);
+                this.$emit('changeView', false);
                 this.isCourseView = true;
             },
             setInfoView: function () {
-                this.$emit('changeView', ProfileView);
+                this.$emit('changeView', true);
                 this.isCourseView = false;
             }
         }

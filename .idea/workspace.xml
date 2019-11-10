@@ -6,7 +6,9 @@
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AddCourseSection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddCourseSection.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CoursesTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CoursesTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ViewButtons.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ViewButtons.vue" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +51,18 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager" selected="npm.npm serve">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:8080">
       <method v="2" />
@@ -64,18 +78,6 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -90,6 +92,7 @@
       <workItem from="1573383133676" duration="143000" />
       <workItem from="1573383311300" duration="5360000" />
       <workItem from="1573388959293" duration="1335000" />
+      <workItem from="1573395378656" duration="3054000" />
     </task>
     <servers />
   </component>

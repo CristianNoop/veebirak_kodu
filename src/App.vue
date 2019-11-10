@@ -1,7 +1,8 @@
 <template>
     <main id="root">
         <Header/>
-        <Component v-bind:is="view"/>
+        <Component v-if="foo" v-bind:is="this.Profile"/>
+        <Component v-if="!foo" v-bind:courses=this.courseList v-bind:is="this.CourseTable"/>
         <ViewButtons v-on:changeView="updateView($event)"/>
         <Footer/>
     </main>
@@ -11,22 +12,35 @@
     import Footer from './components/Footer.vue'
     import Header from './components/Header.vue'
     import ViewButtons from './components/ViewButtons.vue'
+    import Course from "@/models/Course"
+    import Profile from './components/ProfileView.vue'
+    import CourseTable from './components/CoursesTable.vue'
 
     export default {
         name: 'app',
         data: () => {
             return {
-                view: ViewButtons.data().view
+                courseList: [
+                    new Course("Agile software development", 1, 82),
+                    new Course("System modeling", 1, 85),
+                    new Course("Object-oriented programming", 2, 99),
+                    new Course("Estonian language Level A2", 2, 65)
+                ],
+                foo : true,
+                Profile: Profile,
+                CourseTable: CourseTable
             }
         },
         components: {
             Footer,
             ViewButtons,
-            Header
+            Header,
+            Profile,
+            CourseTable
         },
         methods: {
-            updateView: function (newView) {
-                this.view = newView
+            updateView: function (newValue) {
+                this.foo = newValue
             }
         }
     }
