@@ -30,7 +30,7 @@
         computed: {
             day: function() {
                 let date = this.today.getDate();
-
+                
                 return date < 10 ?  `0${date}` : date
             },
             month: function() {
