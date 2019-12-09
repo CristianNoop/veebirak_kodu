@@ -1,267 +1,98 @@
 <template>
-    <main id="root">
+    <div id="app">
         <Header/>
-        <Component v-if="foo" v-bind:gpa=this.gpa v-bind:courses=this.courseList v-bind:is="this.Profile"/>
-        <Component v-on:gpa="calculateGpa" v-if="!foo" v-bind:courses=this.courseList v-bind:is="this.CourseTable"/>
-        <ViewButtons v-on:changeView="updateView($event)"/>
-        <Footer/>
-    </main>
+        <Users :users="users" :onChange="changeSelectedUser"/>
+        <List :list="list"/>
+        <Footer :add="addToList"/>
+    </div>
 </template>
 
 <script>
-    import Footer from './components/Footer.vue'
+    import List from './components/List.vue'
     import Header from './components/Header.vue'
-    import ViewButtons from './components/ViewButtons.vue'
-    import Course from "@/models/Course"
-    import Profile from './components/ProfileView.vue'
-    import CourseTable from './components/CoursesTable.vue'
+    import Footer from './components/Footer.vue'
+    import Users from './components/Users.vue'
+    import User from './models/User';
+    import axios from 'axios';
 
     export default {
         name: 'app',
-        data() {
+        methods: {
+            addToList: function (title) {
+                axios.post('http://localhost:3000/users/' + this.selectedUserId + '/tasks', {title: title})
+                    .then(response => {
+                        this.list.push(response.data);
+                    })
+            },
+            fetchTasks: function () {
+                axios.get('http://localhost:3000/users/' + this.selectedUserId + '/tasks')
+                    .then((response) => {
+                        this.list = response.data;
+                    });
+            },
+            changeSelectedUser: function (id) {
+                this.selectedUserId = id;
+                this.fetchTasks();
+            }
+        },
+        data: () => {
             return {
-                courseList: [
-                    new Course("Agile software development", 1, 82),
-                    new Course("System modeling", 1, 85),
-                    new Course("Object-oriented programming", 2, 99),
-                    new Course("Estonian language Level A2", 2, 65)
+                list: [],
+                users: [
+                    new User(1, 'First User'),
+                    new User(2, 'Second User'),
+                    new User(3, 'Third User'),
+                    new User(4, 'Forth User'),
                 ],
-                foo : true,
-                Profile: Profile,
-                CourseTable: CourseTable,
-                gpa: 0
+                selectedUserId: 1,
             }
         },
         components: {
-            Footer,
-            ViewButtons,
+            List,
             Header,
-            Profile,
-            CourseTable
+            Footer,
+            Users,
         },
-        methods: {
-            updateView: function (newValue) {
-                this.foo = newValue
-            },
-            calculateGpa() {
-                let gpa = 0;
-                this.courseList.forEach(value => {
-                    /* eslint-disable no-console */
-                    value = value.grade;
-                    if (value > 90)
-                        gpa += 4;
-                    else if (value > 80)
-                        gpa += 3;
-                    else if (value > 70)
-                        gpa += 2;
-                    else if (value > 60)
-                        gpa += 1;
-                    else if (value > 50)
-                        gpa += 0.5;
-                });
-                gpa = Math.round(gpa/this.courseList.length*100)/100;
-                this.gpa = gpa;
-            }
-        },
-        created() {
-            this.calculateGpa();
+        mounted: function () {
+            this.fetchTasks();
         }
     }
 </script>
 
 <style>
     * {
+        font-family: 'Quicksand', sans-serif;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
         box-sizing: border-box;
-        font-family: 'Livvic', sans-serif;
     }
 
     html, body {
-        padding: 0;
         margin: 0;
+        padding: 0;
         width: 100%;
         height: 100%;
-        background-color: #eaeaea;
+        background-color: #f0efe9;
     }
 
-    main {
-        position: relative;
-        min-height: 100%;
-        padding-bottom: 110px;
-    }
-
-    .clear-fix {
-        clear: both;
-    }
-
-    header {
-        padding: 20px;
-        background-color: #2196F3;
-        color: #ffffff;
-        text-align: center;
-        margin-bottom: 10px;
-        height: 60px;
-    }
-
-    footer {
-        padding: 30px 0;
-        background-color: #607D8B;
-        margin-top: 10px;
-        height: 100px;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-
-    footer .links {
-        display: block;
-        width: 100%;
-        max-width: 200px;
-        margin: 0 auto;
-        color: #acd7ff;
-        font-size: 11px;
-    }
-
-    footer .links a {
-        text-decoration: none;
-        color: #acd7ff;
-    }
-
-    footer .links a:hover {
-        text-decoration: underline;
-    }
-
-    #container {
-        width: 80%;
-        max-width: 900px;
-        min-width: 320px;
-        padding: 15px;
+    #app {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: #454546;
+        width: 30%;
+        max-width: 400px;
         background-color: #ffffff;
-        margin: 0 auto;
-    }
-
-    #profile {
-        border-bottom: 1px dashed #a7a7a7;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-    }
-
-    #profile div:not(.clear-fix) {
-        height: 190px;
-        float: left;
-        position: relative;
-    }
-
-    #profile .avatar {
-        width: 35%;
-        text-align: center;
-    }
-
-    #profile .avatar img {
-        width: 180px;
-    }
-
-    #profile .info {
-        width: 45%;
-    }
-
-    #profile #gpa {
-        width: 20%;
-    }
-
-    #profile #gpa strong {
+        height: calc(100% - 200px);
         position: absolute;
-        width: 100%;
-        height: 60px;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        margin: auto auto;
-        font-size: 60px;
-        line-height: 60px;
-        text-align: center;
-    }
-
-    .content {
-        padding: 10px;
-        border: 1px solid #cbcbcb;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-
-    }
-
-    table th {
-        padding: 8px 12px;
-        text-align: left;
-        border: 1px solid #cbcbcb;
-        background-color: #03A9F4;
-        color: #ffffff;
-    }
-
-    table td {
-        padding: 8px 12px;
-        border: 1px solid #cbcbcb;
-    }
-
-    .content .tab {
-        display: none;
-    }
-
-    .content .tab.active {
-        display: block;
-    }
-
-    .controls .pill {
-        border: 1px solid #cbcbcb;
-        background-color: #eaeaea;
-        padding: 10px;
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
-        border-top: none;
-        margin-top: -1px;
-        outline: none !important;
-    }
-
-    .controls .pill.active {
-        background-color: #ffffff;
-        border-top: 1px solid #ffffff;
-    }
-
-    .controls .pill:hover {
-        cursor: pointer;
-    }
-
-    .blue-button {
-        background-color: #2196F3;
-        color: #ffffff;
-        border: none;
-        padding: 10px 20px;
-    }
-
-    .green-button {
-        background-color: #69f378;
-        color: #ffffff;
-        border: none;
-        padding: 10px 10px;
-    }
-
-    .grey-button {
-        background-color: #e1e8e6;
-        color: #ffffff;
-        border: none;
-        padding: 10px 20px;
-    }
-
-    .input {
-        border: 1px solid #cccccc;
-        padding: 10px 20px;
-        min-width: 135px;
-    }
-
-    #add-course {
-        display: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: auto;
+        padding: 30px;
+        box-shadow: 2px 2px 4px -1px #dadada;
     }
 </style>
