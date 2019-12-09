@@ -9,12 +9,12 @@ describe('Footer', () => {
   it('Testing whether "open" property in Footer component changes to true when "+" is clicked', () => {
 
     
-    // expect et state on true
+    // votame muutuja open endise state'i
+    let openValue = wrapper.vm.$data.open;
     //klikime nupul
-    // wrapper.trigger('click')
-    //state false or vice versa
-    wrapper.find('span').trigger('clock')
-    expect(wrapper.vm.).toContain(date);
+    wrapper.find('span').trigger('click');
+    //vaatame et muutuja open state muutus
+    expect(wrapper.vm.$data.open).toEqual(!openValue);
   });
 
   
